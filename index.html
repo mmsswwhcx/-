@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Баскетбол - Моя страсть</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem 0;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            color: #1e3c72;
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            color: #e74c3c;
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        nav {
+            background: #2c3e50;
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background: #e74c3c;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        main {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+        
+        section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 18px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        h2 {
+            color: #1e3c72;
+            border-bottom: 4px solid #e74c3c;
+            padding-bottom: 0.7rem;
+            margin-bottom: 2rem;
+            font-size: 2.3rem;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin: 1.8rem 0 1.2rem 0;
+            font-size: 1.6rem;
+        }
+        
+        h4 {
+            color: #34495e;
+            margin: 1.5rem 0 0.8rem 0;
+            font-size: 1.3rem;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8)),
+                        url('https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2.5rem 0;
+        }
+        
+        .hero-text {
+            color: white;
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+            padding: 0 2rem;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #e74c3c;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .image-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .image-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .image-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(30, 60, 114, 0.9);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .rules-list, .legends-list, .equipment-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        
+        .rules-list li, .legends-list li, .equipment-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #ecf0f1;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        
+        .rules-list li:before, .legends-list li:before, .equipment-list li:before {
+            content: "🏀";
+            margin-right: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #e74c3c;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+        
+        .timeline-item {
+            padding: 2rem;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.6);
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 3rem;
+            border-radius: 18px;
+            margin-top: 4rem;
+        }
+        
+        .social-links {
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 15px;
+            font-size: 1.4rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: #e74c3c;
+        }
+        
+        .quote {
+            font-style: italic;
+            color: #7f8c8d;
+            border-left: 4px solid #e74c3c;
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero-text {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏀 Баскетбол - Моя Страсть</h1>
+            <p class="subtitle">Игра, которая изменила мою жизнь</p>
+            <p>Открываю для себя мир баскетбола и делюсь своей любовью к этой удивительной игре</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#about">О баскетболе</a></li>
+                <li><a href="#history">Мой путь</a></li>
+                <li><a href="#rules">Правила игры</a></li>
+                <li><a href="#technique">Техника</a></li>
+                <li><a href="#legends">Легенды</a></li>
+                <li><a href="#gallery">Галерея</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero-image">
+            <div class="hero-text">Играй с душой, побеждай с честью!</div>
+        </div>
+
+        <main>
+            <section id="about">
+                <h2>Почему я люблю баскетбол</h2>
+                <div class="content-grid">
+                    <div class="card">
+                        <h3>💪 Физическое развитие</h3>
+                        <p>Баскетбол - это комплексная тренировка всего тела. Он развивает выносливость, скорость, координацию, прыгучесть и силу. Каждая игра заставляет работать все группы мышц, улучшает сердечно-сосудистую систему и способствует общему физическому развитию.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🤝 Командный дух</h3>
+                        <p>Ничто не сравнится с ощущением настоящей командной работы, когда пять человек на площадке действуют как единое целое. Баскетбол учит доверию, взаимопомощи и пониманию без слов. Победа, достигнутая совместными усилиями, приносит особое удовлетворение.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🎯 Тактическое мышление</h3>
+                        <p>Баскетбол - это не просто бег с мячом. Каждая атака и защита требуют стратегического планирования, быстрого анализа ситуации и мгновенного принятия решений. Игра развивает интеллект, пространственное мышление и способность предвидеть действия соперника.</p>
+                    </div>
+                </div>
+                
+                <div class="quote">
+                    "Баскетбол - это больше, чем просто игра. Это искусство, наука и страсть, объединенные в одном прекрасном движении."
+                </div>
+            </section>
+
+            <section id="history">
+                <h2>Мой баскетбольный путь</h2>
+                <p>Моя любовь к баскетболу началась еще в детстве, когда я впервые увидел игру по телевизору. С тех пор этот вид спорта стал неотъемлемой частью моей жизни.</p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2015</div>
+                        <h4>Первые шаги</h4>
+                        <p>Посетил первую тренировку в школьной секции. Помню, как сложно было попасть мячом в кольцо, но азарт и желание научиться были сильнее.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2017</div>
+                        <h4>Первые соревнования</h4>
+                        <p>Участие в школьном турнире. Мы заняли 3 место, но главное - почувствовал вкус настоящей конкурентной борьбы.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <h4>Университетская команда</h4>
+                        <p>Вступил в баскетбольную команду университета. Интенсивные тренировки 3 раза в неделю, участие в межвузовских соревнованиях.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2023</div>
+                        <h4>Любительская лига</h4>
+                        <p>Играю в городской любительской лиге. Регулярные игры, новые знакомства и постоянное совершенствование навыков.</p>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">8</span>
+                        <div class="stat-label">лет в баскетболе</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">150+</span>
+                        <div class="stat-label">проведённых игр</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">12</span>
+                        <div class="stat-label">турниров</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5</span>
+                        <div class="stat-label">медалей</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="rules">
+                <h2>Основные правила баскетбола</h2>
+                <div class="content-grid">
+                    <div class="card">
+                        <h3>⏱️ Время игры</h3>
+                        <p>Игра состоит из 4 периодов по 10 минут в FIBA и 4 периодов по 12 минут в NBA. Перерывы между периодами - 2 минуты, большой перерыв между половинами игры - 15 минут.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🏀 Система очков</h3>
+                        <p>• 1 очко - штрафной бросок<br>• 2 очка - бросок из игры внутри дуги<br>• 3 очка - бросок из-за трехочковой линии</p>
+                    </div>
+                    <div class="card">
+                        <h3>👥 Состав и замена</h3>
+                        <p>На площадке одновременно находятся 5 игроков от каждой команды. Замены неограниченны и производятся, когда мяч мертвый.</p>
+                    </div>
+                </div>
+
+                <h3>Важные нарушения:</h3>
+                <ul class="rules-list">
+                    <li><strong>Пробежка</strong> - перемещение с мячом без ведения</li>
+                    <li><strong>Аут</strong> - выход мяча за пределы площадки</li>
+                    <li><strong>Нарушение ведения</strong> - двойное ведение или пронос мяча</li>
+                    <li><strong>3 секунды</strong> - нахождение в краске атаки более 3 секунд</li>
+                    <li><strong>5 секунд</strong> - удержание мяча без действий</li>
+                    <li><strong>8 секунд</strong> - невывод мяча из тыловой зоны</li>
+                    <li><strong>24 секунды</strong> - отсутствие броска по кольцу</li>
+                </ul>
+            </section>
+
+            <section id="technique">
+                <h2>Основы техники</h2>
+                <div class="content-grid">
+                    <div class="card">
+                        <h3>🎯 Стойка игрока</h3>
+                        <p>Ноги на ширине плеч, колени согнуты, центр тяжести смещен вперед. Руки готовы к приему мяча или защите.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🏃 Ведение мяча</h3>
+                        <p>Контроль мяча кончиками пальцев, не глядя на мяч. Изменение темпа и направления для обхода защитников.</p>
+                    </div>
+                    <div class="card">
+                        <h3>✈️ Бросок по кольцу</h3>
+                        <p>Правильная постановка рук, работа ног и завершающее движение кистью. Важны концентрация и повторяемость движений.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="legends">
+                <h2>Легенды баскетбола</h2>
+                <div class="content-grid">
+                    <div class="card">
+                        <h3>⭐ Майкл Джордан</h3>
+                        <p>6-кратный чемпион NBA, 5-кратный MVP регулярного сезона. Легенда Chicago Bulls, известный своей невероятной работоспособностью и волей к победе. Его стиль игры изменил баскетбол навсегда.</p>
+                    </div>
+                    <div class="card">
+                        <h3>⭐ Леброн Джеймс</h3>
+                        <p>4-кратный чемпион NBA, 4-кратный MVP. Универсальный игрок, сочетающий физическую мощь, скорость и баскетбольный интеллект. Один из самых доминирующих игроков в истории спорта.</p>
+                    </div>
+                    <div class="card">
+                        <h3>⭐ Коби Брайант</h3>
+                        <p>5-кратный чемпион NBA с Los Angeles Lakers. Известен своей невероятной работоспособностью и "менталитетом мамбы". Его dedication к игре вдохновил поколение игроков.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="gallery">
+                <h2>Баскетбольная галерея</h2>
+                <div class="image-grid">
+                    <div class="image-item">
+                        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Баскетбольное кольцо">
+                        <div class="image-caption">Символ игры</div>
+                    </div>
+                    <div class="image-item">
+                        <img src="https://images.unsplash.com/photo-1519861155730-0b9c679b8b7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Командная игра">
+                        <div class="image-caption">Командная работа</div>
+                    </div>
+                    <div class="image-item">
+                        <img src="https://images.unsplash.com/photo-1504450758481-7338eba7524a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Бросок">
+                        <div class="image-caption">Точный бросок</div>
+                    </div>
+                    <div class="image-item">
+                        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Победа">
+                        <div class="image-caption">Момент победы</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="#" class="cta-button">Присоединиться к игре!</a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <h3>Свяжитесь со мной</h3>
+            <p>Если вы тоже любите баскетбол или хотите начать играть - давайте общаться!</p>
+            <div class="social-links">
+                <a href="#">📧 Email</a>
+                <a href="#">📱 Instagram</a>
+                <a href="#">💼 VK</a>
+                <a href="#">🐦 Twitter</a>
+            </div>
+            <p>&copy; 2024 Баскетбол - моя страсть. Сделано с ❤️ и любовью к игре.</p>
+        </footer>
+    </div>
+</body>
+</html>
